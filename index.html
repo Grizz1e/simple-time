@@ -35,8 +35,15 @@
 <script>
 function updateClock() {
     const now = new Date();
-    const timeString = now.toLocaleTimeString();
-    document.getElementById("clock").textContent = timeString;
+
+    // full clock display (HH:MM:SS)
+    const fullTime = now.toLocaleTimeString();
+
+    // title time (HH:MM)
+    const shortTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+    document.getElementById("clock").textContent = fullTime;
+    document.title = shortTime;
 }
 
 // update immediately, then every second
