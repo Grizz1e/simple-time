@@ -3,18 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Local Time</title>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
-    />
 
+<title>Local Time</title>
+
+<meta name="description" content="A clean, simple real-time local clock showing your current time. Minimal, elegant, and distraction-free.">
+<meta name="keywords" content="local time, real time clock, current time, minimal clock, clean clock website">
+<meta property="og:title" content="Simple Time">
+<meta property="og:description" content="A clean, elegant real-time clock showing your local time.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://time.grizz1e.com">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Simple Time">
+<meta name="twitter:description" content="A clean, elegant real-time local clock.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Simple Time",
+  "url": "https://time.grizz1e.com",
+  "description": "A clean, minimalist real-time local clock."
+}
+</script>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
 <style>
     body {
         margin: 0;
@@ -35,10 +45,9 @@
         color: #333;
         letter-spacing: 2px;
     }
+
     #fullscreen-btn {
         position: fixed;
-      display: flex;
-      justify-contents: center;
         bottom: 18px;
         right: 18px;
         background: rgba(255, 255, 255, 0.7);
@@ -51,21 +60,21 @@
         opacity: 0.35;
         transition: opacity 0.25s, background 0.25s;
     }
-
     #fullscreen-btn:hover {
         opacity: 1;
         background: rgba(255, 255, 255, 0.9);
     }
-
-
 </style>
 
+<link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.2/src/css/phosphor.css">
 </head>
+
 <body>
 
-<div class="clock" id="clock">--:--:--</div>
+<div class="clock" id="clock" aria-live="polite">--:--:--</div>
+
 <div id="fullscreen-btn" title="Toggle Fullscreen">
-  <i class="ph ph-arrows-out"></i>
+    <i class="ph-arrows-out"></i>
 </div>
 
 <script>
@@ -79,29 +88,26 @@ function updateClock() {
     const shortTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
     document.getElementById("clock").textContent = fullTime;
-    document.title = shortTime;
+    document.title = shortTime + " — Local Time";
 }
 
-// update immediately, then every second
 updateClock();
 setInterval(updateClock, 1000);
-</script>
 
-<script>
+// fullscreen toggle
 const btn = document.getElementById("fullscreen-btn");
 const icon = btn.querySelector("i");
 
 btn.addEventListener("click", () => {
     if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen();
-        icon.className = "ph ph-arrows-in";
+        icon.className = "ph-arrows-in";
     } else {
         document.exitFullscreen();
-        icon.className = "ph ph-arrows-out";
+        icon.className = "ph-arrows-out";
     }
 });
 </script>
-
 
 </body>
 </html>
