@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Local Time</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
 
 <style>
     body {
@@ -25,12 +35,38 @@
         color: #333;
         letter-spacing: 2px;
     }
+    #fullscreen-btn {
+        position: fixed;
+      display: flex;
+      justify-contents: center;
+        bottom: 18px;
+        right: 18px;
+        background: rgba(255, 255, 255, 0.7);
+        backdrop-filter: blur(4px);
+        border-radius: 10px;
+        padding: 8px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        opacity: 0.35;
+        transition: opacity 0.25s, background 0.25s;
+    }
+
+    #fullscreen-btn:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+
 </style>
 
 </head>
 <body>
 
 <div class="clock" id="clock">--:--:--</div>
+<div id="fullscreen-btn" title="Toggle Fullscreen">
+  <i class="ph ph-arrows-out"></i>
+</div>
 
 <script>
 function updateClock() {
@@ -50,6 +86,22 @@ function updateClock() {
 updateClock();
 setInterval(updateClock, 1000);
 </script>
+
+<script>
+const btn = document.getElementById("fullscreen-btn");
+const icon = btn.querySelector("i");
+
+btn.addEventListener("click", () => {
+    if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+        icon.className = "ph ph-arrows-in";
+    } else {
+        document.exitFullscreen();
+        icon.className = "ph ph-arrows-out";
+    }
+});
+</script>
+
 
 </body>
 </html>
