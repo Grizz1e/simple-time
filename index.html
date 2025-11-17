@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Local Time</title>
+
+<style>
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #f5f5f5;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+    }
+
+    .clock {
+        font-size: 4rem;
+        padding: 20px 40px;
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        color: #333;
+        letter-spacing: 2px;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="clock" id="clock">--:--:--</div>
+
+<script>
+function updateClock() {
+    const now = new Date();
+    const timeString = now.toLocaleTimeString();
+    document.getElementById("clock").textContent = timeString;
+}
+
+// update immediately, then every second
+updateClock();
+setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
